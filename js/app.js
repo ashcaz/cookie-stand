@@ -15,7 +15,7 @@ var seattleStore = {
   customersPerHour: function (){
     var randomNumber = Math.floor(Math.random() * (this.maxCustomerPerHour-this.minCustomersPerHour)) + this.minCustomersPerHour;
     return randomNumber;
-  }
+  },
 };
 
 //Create array to store simulated cookies per hour
@@ -36,7 +36,7 @@ for(i = 0; i < seattleStore.cookiesPerHourArray.length; i++){
   //create a new element
   var liEl = document.createElement('li');
   //Give it content
-  liEl.textContent = `${storeHours[i]} : ${seattleStore.cookiesPerHourArray[i]}`;
+  liEl.textContent = `${storeHours[i]} : ${seattleStore.cookiesPerHourArray[i]} cookies`;
   //Append the child element to the parent element
   pEl.appendChild(liEl);
 }
@@ -50,7 +50,7 @@ for(i = 0; i < seattleStore.cookiesPerHourArray.length; i++){
 // create a new element
 liEl = document.createElement('li');
 //Give it content
-liEl.textContent = `Total : ${totalCookies}`;
+liEl.textContent = `Total : ${totalCookies} cookies`;
 //Append the child element to the parent element
 pEl.appendChild(liEl);
 
@@ -87,7 +87,7 @@ for(i = 0; i < tokyoStore.cookiesPerHourArray.length; i++){
   //create a new element
   liEl = document.createElement('li');
   //Give it content
-  liEl.textContent = `${storeHours[i]} : ${tokyoStore.cookiesPerHourArray[i]}`;
+  liEl.textContent = `${storeHours[i]} : ${tokyoStore.cookiesPerHourArray[i]} cookies`;
   //Append the child element to the parent element
   pEl.appendChild(liEl);
 }
@@ -100,7 +100,7 @@ for(i = 0; i < tokyoStore.cookiesPerHourArray.length; i++){
 // create a new element
 liEl = document.createElement('li');
 //Give it content
-liEl.textContent = `Total : ${totalCookies}`;
+liEl.textContent = `Total : ${totalCookies} cookies`;
 //Append the child element to the parent element
 pEl.appendChild(liEl);
 
@@ -138,7 +138,7 @@ for(i = 0; i < dubaiStore.cookiesPerHourArray.length; i++){
   //create a new element
   liEl = document.createElement('li');
   //Give it content
-  liEl.textContent = `${storeHours[i]} : ${dubaiStore.cookiesPerHourArray[i]}`;
+  liEl.textContent = `${storeHours[i]} : ${dubaiStore.cookiesPerHourArray[i]} cookies`;
   //Append the child element to the parent element
   pEl.appendChild(liEl);
 }
@@ -151,7 +151,7 @@ for(i = 0; i < dubaiStore.cookiesPerHourArray.length; i++){
 // create a new element
 liEl = document.createElement('li');
 //Give it content
-liEl.textContent = `Total : ${totalCookies}`;
+liEl.textContent = `Total : ${totalCookies} cookies`;
 //Append the child element to the parent element
 pEl.appendChild(liEl);
 
@@ -189,7 +189,7 @@ for(i = 0; i < tokyoStore.cookiesPerHourArray.length; i++){
   //create a new element
   liEl = document.createElement('li');
   //Give it content
-  liEl.textContent = `${storeHours[i]} : ${tokyoStore.cookiesPerHourArray[i]}`;
+  liEl.textContent = `${storeHours[i]} : ${tokyoStore.cookiesPerHourArray[i]} cookies`;
   //Append the child element to the parent element
   pEl.appendChild(liEl);
 }
@@ -202,7 +202,7 @@ for(i = 0; i < parisStore.cookiesPerHourArray.length; i++){
 // create a new element
 liEl = document.createElement('li');
 //Give it content
-liEl.textContent = `Total : ${totalCookies}`;
+liEl.textContent = `Total : ${totalCookies} cookies`;
 //Append the child element to the parent element
 pEl.appendChild(liEl);
 
@@ -241,7 +241,7 @@ for(i = 0; i < limaStore.cookiesPerHourArray.length; i++){
   //create a new element
   liEl = document.createElement('li');
   //Give it content
-  liEl.textContent = `${storeHours[i]} : ${limaStore.cookiesPerHourArray[i]}`;
+  liEl.textContent = `${storeHours[i]} : ${limaStore.cookiesPerHourArray[i]} cookies`;
   //Append the child element to the parent element
   pEl.appendChild(liEl);
 }
@@ -254,6 +254,6 @@ for(i = 0; i < limaStore.cookiesPerHourArray.length; i++){
 // create a new element
 liEl = document.createElement('li');
 //Give it content
-liEl.textContent = `Total : ${totalCookies}`;
+liEl.textContent = `Total : ${totalCookies} cookies`;
 //Append the child element to the parent element
 pEl.appendChild(liEl);
