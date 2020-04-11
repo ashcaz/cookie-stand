@@ -31,6 +31,7 @@ for(var i = 0; i < storeHours.length; i++){
 //anchor data to parent element
 var pEl = document.getElementById('store1');
 
+//created a for loop for hour by hour cookie sales
 for(i = 0; i < seattleStore.cookiesPerHourArray.length; i++){
   //create a new element
   var liEl = document.createElement('li');
@@ -40,6 +41,7 @@ for(i = 0; i < seattleStore.cookiesPerHourArray.length; i++){
   pEl.appendChild(liEl);
 }
 
+//for loop for cookie total/
 var totalCookies = 0;
 for(i = 0; i < seattleStore.cookiesPerHourArray.length; i++){
   totalCookies= totalCookies + seattleStore.cookiesPerHourArray[i];
