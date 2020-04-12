@@ -21,18 +21,46 @@ new Store ('Lima',2,16,4.6);
 
 Store.prototype.customersPerHour = function (){
   var randomNumber = Math.floor(Math.random() * (this.maxCustomerPerHour-this.minCustomersPerHour)) + this.minCustomersPerHour;
-  console.log(randomNumber);
   return randomNumber;
 };
 
-storesArr[0].customersPerHour();
 
-//Create array to store simulated cookies per hour
-// seattleStore.cookiesPerHourArray = [];
+//nested for loop to get customers per hour for every store
+for(var i = 0; i < storesArr.length; i++){
+  var customersPerHourArray = [];
+  storesArr[i].customersPerHourArray = customersPerHourArray;
+  for (var j = 0; j < storeHours.length; j++){
+    storesArr[i].customersPerHourArray.push(storesArr[i].customersPerHour());
+  }
+}
 
-// //create a for loop to generate cookies sold per hour
-// for(var i = 0; i < storeHours.length; i++){
-//   seattleStore.cookiesPerHourArray.push(Math.round(seattleStore.customersPerHour()*seattleStore.avgCookiesPerCustomer));//pushes each number into cookiePerHourArray to store
+//nested for loop to get cookies per hour for every store
+for(i = 0; i < storesArr.length; i++){
+  var cookiesPerHourArray = [];
+  storesArr[i].cookiesPerHourArray = cookiesPerHourArray;
+  for(j = 0; j < storeHours.length; j++){
+    storesArr[i].cookiesPerHourArray.push(Math. round(storesArr[i].customersPerHourArray[j] * storesArr[i].avgCookiesPerCustomer));
+  }
+}
+
+
+//for loop to get totals for cookies sold for every store
+for(i = 0; i < storesArr.length; i++){
+  var totalCookies = 0;
+  for(j = 0; j < storesArr[i].cookiesPerHourArray.length; j++){
+
+    totalCookies = totalCookies + storesArr[i].cookiesPerHourArray[j];
+  }
+  storesArr[i].totalCookies = totalCookies;
+}
+console.log(storesArr[1]);
+
+// // // //create a for loop to generate cookies sold per hour
+// for(i = 0; i < storesArr.length; i++){
+//   storesArr[i].cookiesPerHour();
+// }
+// console.log(storesArr[0]);
+//pushes each number into cookiePerHourArray to store
 // }
 
 // // console.log(seattleStore.cookiesPerHourArray);
