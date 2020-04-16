@@ -3,257 +3,125 @@
 //Create an Array with store hours
 var storeHours = ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm'];
 
-//create object for  store 1
-var seattleStore = {
-  //create properies for min hourly customers
-  minCustomersPerHour: 23,
-  //create property for max hourly customers
-  maxCustomerPerHour: 65,
-  //create property for average cookies per customer
-  avgCookiesPerCustomer: 6.3,
-  //create method to generate random number of customers per hour
-  customersPerHour: function (){
-    var randomNumber = Math.floor(Math.random() * (this.maxCustomerPerHour-this.minCustomersPerHour)) + this.minCustomersPerHour;
-    return randomNumber;
-  },
+var storesArr = [];
+
+function Store (name, minCustomersPerHour, maxCustomersPerHour,avgCookiesPerCustomer){
+  this.name = name;
+  this.minCustomersPerHour = minCustomersPerHour;
+  this.maxCustomerPerHour = maxCustomersPerHour;
+  this.avgCookiesPerCustomer = avgCookiesPerCustomer;
+  this.cookiesPerHourArray = [];
+
+  this.cookiesPerHour();
+
+  storesArr.push(this);
+}
+
+Store.prototype.randomCustomers = function (){
+  var randomNumber = Math.floor(Math.random() * (this.maxCustomerPerHour-this.minCustomersPerHour + 1)) + this.minCustomersPerHour;
+  return randomNumber;
 };
 
-//Create array to store simulated cookies per hour
-seattleStore.cookiesPerHourArray = [];
-
-//create a for loop to generate cookies sold per hour
-for(var i = 0; i < storeHours.length; i++){
-  seattleStore.cookiesPerHourArray.push(Math.round(seattleStore.customersPerHour()*seattleStore.avgCookiesPerCustomer));//pushes each number into cookiePerHourArray to store
-}
-
-// console.log(seattleStore.cookiesPerHourArray);
-
-//anchor data to parent element
-var pEl = document.getElementById('store1');
-
-//created a for loop for hour by hour cookie sales
-for(i = 0; i < seattleStore.cookiesPerHourArray.length; i++){
-  //create a new element
-  var liEl = document.createElement('li');
-  //Give it content
-  liEl.textContent = `${storeHours[i]} : ${seattleStore.cookiesPerHourArray[i]} cookies`;
-  //Append the child element to the parent element
-  pEl.appendChild(liEl);
-}
-
-//for loop for cookie total/
-var totalCookies = 0;
-for(i = 0; i < seattleStore.cookiesPerHourArray.length; i++){
-  totalCookies= totalCookies + seattleStore.cookiesPerHourArray[i];
-}
-
-// create a new element
-liEl = document.createElement('li');
-//Give it content
-liEl.textContent = `Total : ${totalCookies} cookies`;
-//Append the child element to the parent element
-pEl.appendChild(liEl);
-
-
-//create object for  store 2
-var tokyoStore = {
-  //create properies for min hourly customers
-  minCustomersPerHour: 3,
-  //create property for max hourly customers
-  maxCustomerPerHour: 24,
-  //create property for average cookies per customer
-  avgCookiesPerCustomer: 1.2,
-  //create method to generate random number of customers per hour
-  customersPerHour: function (){
-    var randomNumber = Math.floor(Math.random() * (this.maxCustomerPerHour-this.minCustomersPerHour)) + this.minCustomersPerHour;
-    return randomNumber;
+Store.prototype.cookiesPerHour = function(){
+  for (var i = 0; i < storeHours.length; i++){
+    var cookieCalc = Math.round(this.avgCookiesPerCustomer * this.randomCustomers());
+    this.cookiesPerHourArray.push(cookieCalc);
   }
 };
 
-//Create array to store simulated cookies per hour
-tokyoStore.cookiesPerHourArray = [];
+new Store ('Seattle',23,65,6.3);
+new Store ('Tokyo',3,24,1.2);
+new Store ('Dubai', 11,38,3.7);
+new Store ('Paris',20,38,2.3);
+new Store ('Lima',2,16,4.6);
 
-//create a for loop to generate cookies sold per hour
-for(i = 0; i < storeHours.length; i++){
-  tokyoStore.cookiesPerHourArray.push(Math.round(tokyoStore.customersPerHour()*tokyoStore.avgCookiesPerCustomer));//pushes each number into cookiePerHourArray to store
-}
+//Declare parent element
+var pEl = document.getElementById('table');
 
-// console.log(tokyoStore.cookiesPerHourArray);
+function renderStoreHours(){
+  //Create child element
+  var trEl = document.createElement('tr');
+  var thEl = document.createElement('th');
+  var eTh = document.createElement('th');
+  trEl.appendChild(eTh);
 
-//anchor data to parent element
-pEl = document.getElementById('store2');
+  for(var i = 0; i < storeHours.length; i++){
+    //Create a child element of the child above
+    thEl = document.createElement('th');
 
-for(i = 0; i < tokyoStore.cookiesPerHourArray.length; i++){
-  //create a new element
-  liEl = document.createElement('li');
-  //Give it content
-  liEl.textContent = `${storeHours[i]} : ${tokyoStore.cookiesPerHourArray[i]} cookies`;
-  //Append the child element to the parent element
-  pEl.appendChild(liEl);
-}
+    //  Add in a table data for head
+    var tdEl = document.createElement('td');
 
-totalCookies = 0;
-for(i = 0; i < tokyoStore.cookiesPerHourArray.length; i++){
-  totalCookies = totalCookies + tokyoStore.cookiesPerHourArray[i];
-}
+    //Add text in table
+    tdEl.textContent = storeHours[i];
 
-// create a new element
-liEl = document.createElement('li');
-//Give it content
-liEl.textContent = `Total : ${totalCookies} cookies`;
-//Append the child element to the parent element
-pEl.appendChild(liEl);
+    //Append children to parents
+    thEl.appendChild(tdEl);
 
-
-
-//create object for  store 3
-var dubaiStore = {
-  //create properies for min hourly customers
-  minCustomersPerHour: 11,
-  //create property for max hourly customers
-  maxCustomerPerHour: 38,
-  //create property for average cookies per customer
-  avgCookiesPerCustomer: 3.7,
-  //create method to generate random number of customers per hour
-  customersPerHour: function (){
-    var randomNumber = Math.floor(Math.random() * (this.maxCustomerPerHour-this.minCustomersPerHour)) + this.minCustomersPerHour;
-    return randomNumber;
+    //Append to table
+    trEl.appendChild(thEl);
   }
-};
+  var totalEl = document.createElement('th');
+  var totalTd = document.createElement('td');
 
-//Create array to store simulated cookies per hour
-dubaiStore.cookiesPerHourArray = [];
-
-//create a for loop to generate cookies sold per hour
-for(i = 0; i < storeHours.length; i++){
-  dubaiStore.cookiesPerHourArray.push(Math.round(dubaiStore.customersPerHour() * dubaiStore.avgCookiesPerCustomer));//pushes each number into cookiePerHourArray to store
+  totalEl.textContent = 'Total';
+  totalEl.appendChild(totalTd);
+  trEl.appendChild(totalEl);
+  pEl.appendChild(trEl);
 }
 
-// console.log(dubaiStore.cookiesPerHourArray);
+renderStoreHours();
 
-//anchor data to parent element
-pEl = document.getElementById('store3');
+function renderCookieData(){
+  for(var i = 0; i < storesArr.length; i++){
+    var trEl = document.createElement('tr');
+    var tdEl = document.createElement('td');
+    tdEl.textContent = storesArr[i].name;
 
-for(i = 0; i < dubaiStore.cookiesPerHourArray.length; i++){
-  //create a new element
-  liEl = document.createElement('li');
-  //Give it content
-  liEl.textContent = `${storeHours[i]} : ${dubaiStore.cookiesPerHourArray[i]} cookies`;
-  //Append the child element to the parent element
-  pEl.appendChild(liEl);
-}
-
-totalCookies = 0;
-for(i = 0; i < dubaiStore.cookiesPerHourArray.length; i++){
-  totalCookies = totalCookies + dubaiStore.cookiesPerHourArray[i];
-}
-
-// create a new element
-liEl = document.createElement('li');
-//Give it content
-liEl.textContent = `Total : ${totalCookies} cookies`;
-//Append the child element to the parent element
-pEl.appendChild(liEl);
-
-
-
-//create object for  store 4
-var parisStore = {
-  //create properies for min hourly customers
-  minCustomersPerHour: 20,
-  //create property for max hourly customers
-  maxCustomerPerHour: 38,
-  //create property for average cookies per customer
-  avgCookiesPerCustomer: 2.3,
-  //create method to generate random number of customers per hour
-  customersPerHour: function (){
-    var randomNumber = Math.floor(Math.random() * (this.maxCustomerPerHour-this.minCustomersPerHour)) + this.minCustomersPerHour;
-    return randomNumber;
+    trEl.appendChild(tdEl);
+    var total = 0;
+    for(var j = 0; j < storesArr[i].cookiesPerHourArray.length; j++){
+      var tdEl2 = document.createElement('td');
+      tdEl2.textContent = storesArr[i].cookiesPerHourArray[j];
+      trEl.appendChild(tdEl2);
+      total += storesArr[i].cookiesPerHourArray[j];
+    }
+    var tdTotal = document.createElement('td');
+    tdTotal.textContent = total;
+    trEl.appendChild(tdTotal);
+    pEl.appendChild(trEl);
   }
-};
-
-//Create array to store simulated cookies per hour
-parisStore.cookiesPerHourArray = [];
-
-//create a for loop to generate cookies sold per hour
-for(i = 0; i < storeHours.length; i++){
-  parisStore.cookiesPerHourArray.push(Math.round(parisStore.customersPerHour()*parisStore.avgCookiesPerCustomer));//pushes each number into cookiePerHourArray to store
 }
 
-// console.log(tokyoStore.cookiesPerHourArray);
+renderCookieData();
 
-//anchor data to parent element
-pEl = document.getElementById('store4');
+function renderFooterTotal(){
+  var trEl = document.createElement('tr');
+  var tdEl = document.createElement('td');
+  var runningTotal = 0;
 
-for(i = 0; i < tokyoStore.cookiesPerHourArray.length; i++){
-  //create a new element
-  liEl = document.createElement('li');
-  //Give it content
-  liEl.textContent = `${storeHours[i]} : ${tokyoStore.cookiesPerHourArray[i]} cookies`;
-  //Append the child element to the parent element
-  pEl.appendChild(liEl);
-}
+  tdEl.textContent = 'Totals';
+  trEl.appendChild(tdEl);
 
-totalCookies = 0;
-for(i = 0; i < parisStore.cookiesPerHourArray.length; i++){
-  totalCookies = totalCookies + parisStore.cookiesPerHourArray[i];
-}
+  pEl.appendChild(trEl);
 
-// create a new element
-liEl = document.createElement('li');
-//Give it content
-liEl.textContent = `Total : ${totalCookies} cookies`;
-//Append the child element to the parent element
-pEl.appendChild(liEl);
+  for(var i = 0; i < storeHours.length;i++){
+    var total = 0;
+    var tdEl2 = document.createElement('td');
 
+    for(var j = 0; j < storesArr.length; j++){
+      total += storesArr[j].cookiesPerHourArray[i];
+    }
+    console.log(total);
 
-
-
-//create object for  store 5
-var limaStore = {
-  //create properies for min hourly customers
-  minCustomersPerHour: 2,
-  //create property for max hourly customers
-  maxCustomerPerHour: 16,
-  //create property for average cookies per customer
-  avgCookiesPerCustomer: 4.6,
-  //create method to generate random number of customers per hour
-  customersPerHour: function (){
-    var randomNumber = Math.floor(Math.random() * (this.maxCustomerPerHour-this.minCustomersPerHour)) + this.minCustomersPerHour;
-    return randomNumber;
+    tdEl2.textContent = total;
+    runningTotal += total;
+    trEl.appendChild(tdEl2);
   }
-};
-
-//Create array to store simulated cookies per hour
-limaStore.cookiesPerHourArray = [];
-
-//create a for loop to generate cookies sold per hour
-for(i = 0; i < storeHours.length; i++){
-  limaStore.cookiesPerHourArray.push(Math.round(limaStore.customersPerHour()*limaStore.avgCookiesPerCustomer));//pushes each number into cookiePerHourArray to store
+  var tdRunningTotal = document.createElement('td');
+  console.log(runningTotal);
+  tdRunningTotal.textContent = runningTotal;
+  trEl.appendChild(tdRunningTotal);
 }
 
-// console.log(limaStore.cookiesPerHourArray);
-
-//anchor data to parent element
-pEl = document.getElementById('store5');
-
-for(i = 0; i < limaStore.cookiesPerHourArray.length; i++){
-  //create a new element
-  liEl = document.createElement('li');
-  //Give it content
-  liEl.textContent = `${storeHours[i]} : ${limaStore.cookiesPerHourArray[i]} cookies`;
-  //Append the child element to the parent element
-  pEl.appendChild(liEl);
-}
-
-totalCookies = 0;
-for(i = 0; i < limaStore.cookiesPerHourArray.length; i++){
-  totalCookies = totalCookies + limaStore.cookiesPerHourArray[i];
-}
-
-// create a new element
-liEl = document.createElement('li');
-//Give it content
-liEl.textContent = `Total : ${totalCookies} cookies`;
-//Append the child element to the parent element
-pEl.appendChild(liEl);
+renderFooterTotal();

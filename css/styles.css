@@ -1,3 +1,7 @@
 h1, h2 {
   font-family: 'Indie Flower', cursive;
 }
+table {
+  table-layout: auto;
+  width: 100%;
+}
