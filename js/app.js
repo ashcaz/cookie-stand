@@ -15,10 +15,8 @@ function Store (name, minCustomersPerHour, maxCustomersPerHour,avgCookiesPerCust
   this.cookiesPerHour();
 
   storesArr.push(this);
-
 }
 
-console.log(storesArr);
 Store.prototype.randomCustomers = function (){
   var randomNumber = Math.floor(Math.random() * (this.maxCustomerPerHour-this.minCustomersPerHour + 1)) + this.minCustomersPerHour;
   return randomNumber;
@@ -127,4 +125,3 @@ function renderFooterTotal(){
 }
 
 renderFooterTotal();
-
