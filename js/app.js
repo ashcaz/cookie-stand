@@ -40,12 +40,12 @@ new Store ('Lima',2,16,4.6);
 //Declare parent element
 var pEl = document.getElementById('table');
 
-function renderHeader(){
+function renderStoreHours(){
   //Create child element
-  var cEl = document.createElement('tr');
+  var trEl = document.createElement('tr');
   var thEl = document.createElement('th');
   var eTh = document.createElement('th');
-  cEl.appendChild(eTh);
+  trEl.appendChild(eTh);
 
   for(var i = 0; i < storeHours.length; i++){
     //Create a child element of the child above
@@ -61,20 +61,20 @@ function renderHeader(){
     thEl.appendChild(tdEl);
 
     //Append to table
-    cEl.appendChild(thEl);
+    trEl.appendChild(thEl);
   }
   var totalEl = document.createElement('th');
   var totalTd = document.createElement('td');
 
-  totalTd.textContent = 'Total';
+  totalEl.textContent = 'Total';
   totalEl.appendChild(totalTd);
-  cEl.appendChild(totalEl);
-  pEl.appendChild(cEl);
+  trEl.appendChild(totalEl);
+  pEl.appendChild(trEl);
 }
 
-renderHeader();
+renderStoreHours();
 
-function renderStoreNumbers(){
+function renderCookieData(){
   for(var i = 0; i < storesArr.length; i++){
     var trEl = document.createElement('tr');
     var tdEl = document.createElement('td');
@@ -95,8 +95,36 @@ function renderStoreNumbers(){
   }
 }
 
-renderStoreNumbers();
+renderCookieData();
 
 function renderFooterTotal(){
+  var trEl = document.createElement('tr');
+  var tdEl = document.createElement('td');
+  var runningTotal = 0;
 
+  tdEl.textContent = 'Totals';
+  trEl.appendChild(tdEl);
+
+  pEl.appendChild(trEl);
+
+  for(var i = 0; i < storeHours.length;i++){
+    var total = 0;
+    var tdEl2 = document.createElement('td');
+
+    for(var j = 0; j < storesArr.length; j++){
+      total += storesArr[j].cookiesPerHourArray[i];
+    }
+    console.log(total);
+
+    tdEl2.textContent = total;
+    runningTotal += total;
+    trEl.appendChild(tdEl2);
+  }
+  var tdRunningTotal = document.createElement('td');
+  console.log(runningTotal);
+  tdRunningTotal.textContent = runningTotal;
+  trEl.appendChild(tdRunningTotal);
 }
+
+renderFooterTotal();
+
