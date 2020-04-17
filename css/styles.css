@@ -1,5 +1,5 @@
 body{
-  background-color:white;
+  background-color: salmon;
 }
 a{
   text-decoration: none;
@@ -18,7 +18,7 @@ a:active{
 }
 
 nav{
-  height: 500px;
+  height: 450px;
   width: 100%;
   background-image: url(/images/header-pic.jpg);
   background-size: cover;
@@ -43,7 +43,7 @@ li{
   height: 20px;
   width: 20px;
 }
-h1, h2 {
+h1{
   font-family: 'Indie Flower', cursive;
   font-size: 60px;
   color: white;
@@ -51,9 +51,28 @@ h1, h2 {
   margin-right: 150px;
   padding: 20px;
 }
+section{
+  text-align: left;
+  float: left;
+  padding: 10px;
+  border: black solid 2px;
+  margin-right: 20px;
+  margin-top: 10px;
+}
+section h2{
+  padding: 2px;
+  margin: 10px;
+  margin-left: 0px;
+  border: black solid;
+}
+section p{
+  height:100px;
+  width: 100px;
+}
 p{
   height: 200px;
   width: 200px;
+  float: right
 
 }
 footer{
