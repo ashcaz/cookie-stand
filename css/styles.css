@@ -1,7 +1,82 @@
-h1, h2 {
-  font-family: 'Indie Flower', cursive;
+body{
+  background-color: salmon;
 }
-table {
-  table-layout: auto;
+a{
+  text-decoration: none;
+  color: white;
+  cursor: alias;
+
+}
+a:hover{
+  color:white;
+  font-weight: bold;
+  background-color: rgba(250, 128, 114, .5);
+  text-decoration: none;
+}
+a:active{
+  text-decoration: none;
+}
+
+nav{
+  height: 450px;
   width: 100%;
+  background-image: url(/images/header-pic.jpg);
+  background-size: cover;
+  display: inline-block;
+}
+#logo{
+  height: 50px;
+  width: 150px;
+  float: left;
+}
+ul{
+  text-align: right;
+}
+li{
+  display: inline;
+  padding:10px;
+  text-align: right;
+  margin: 0px 10px;
+  color: white;
+}
+#search{
+  height: 20px;
+  width: 20px;
+}
+h1{
+  font-family: 'Indie Flower', cursive;
+  font-size: 60px;
+  color: white;
+  text-align: center;
+  margin-right: 150px;
+  padding: 20px;
+}
+section{
+  text-align: left;
+  float: left;
+  padding: 10px;
+  border: black solid 2px;
+  margin-right: 20px;
+  margin-top: 10px;
+}
+section h2{
+  padding: 2px;
+  margin: 10px;
+  margin-left: 0px;
+  border: black solid;
+}
+section p{
+  height:100px;
+  width: 100px;
+}
+p{
+  height: 200px;
+  width: 200px;
+  float: right
+
+}
+footer{
+  height: 200px;
+  width: 100%;
+  background-image: url();
 }
