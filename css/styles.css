@@ -1,7 +1,63 @@
+body{
+  background-color:white;
+}
+a{
+  text-decoration: none;
+  color: white;
+  cursor: alias;
+
+}
+a:hover{
+  color:white;
+  font-weight: bold;
+  background-color: rgba(250, 128, 114, .5);
+  text-decoration: none;
+}
+a:active{
+  text-decoration: none;
+}
+
+nav{
+  height: 500px;
+  width: 100%;
+  background-image: url(/images/header-pic.jpg);
+  background-size: cover;
+  display: inline-block;
+}
+#logo{
+  height: 50px;
+  width: 150px;
+  float: left;
+}
+ul{
+  text-align: right;
+}
+li{
+  display: inline;
+  padding:10px;
+  text-align: right;
+  margin: 0px 10px;
+  color: white;
+}
+#search{
+  height: 20px;
+  width: 20px;
+}
 h1, h2 {
   font-family: 'Indie Flower', cursive;
+  font-size: 60px;
+  color: white;
+  text-align: center;
+  margin-right: 150px;
+  padding: 20px;
 }
-table {
-  table-layout: auto;
+p{
+  height: 200px;
+  width: 200px;
+
+}
+footer{
+  height: 200px;
   width: 100%;
+  background-image: url();
 }
