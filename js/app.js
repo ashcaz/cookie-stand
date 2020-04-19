@@ -38,6 +38,12 @@ new Store ('Lima',2,16,4.6);
 //Declare parent element
 var pEl = document.getElementById('table');
 
+function addElement(element, content, parent) {
+  var newEl = document.createElement(element);
+  newEl.textContent = content;
+  parent.appendChild(newEl);
+}
+
 function renderStoreHours(){
   //Create child element
   var trEl = document.createElement('tr');
@@ -49,47 +55,32 @@ function renderStoreHours(){
     //Create a child element of the child above
     thEl = document.createElement('th');
 
-    //  Add in a table data for head
-    var tdEl = document.createElement('td');
-
-    //Add text in table
-    tdEl.textContent = storeHours[i];
-
-    //Append children to parents
-    thEl.appendChild(tdEl);
+    addElement('td',storeHours[i],thEl);
 
     //Append to table
     trEl.appendChild(thEl);
   }
   var totalEl = document.createElement('th');
-  var totalTd = document.createElement('td');
-
-  totalEl.textContent = 'Total';
-  totalEl.appendChild(totalTd);
+  addElement('td','Total',totalEl);
   trEl.appendChild(totalEl);
   pEl.appendChild(trEl);
 }
 
 renderStoreHours();
 
-function renderCookieData(){
-  for(var i = 0; i < storesArr.length; i++){
-    var trEl = document.createElement('tr');
-    var tdEl = document.createElement('td');
-    tdEl.textContent = storesArr[i].name;
 
-    trEl.appendChild(tdEl);
+function renderCookieData(){
+  for (var i = 0; i < storesArr.length; i++){
+    var trEl = document.createElement('tr');
+    pEl.appendChild(trEl);
+
+    addElement('td', storesArr[i].name, trEl);
     var total = 0;
-    for(var j = 0; j < storesArr[i].cookiesPerHourArray.length; j++){
-      var tdEl2 = document.createElement('td');
-      tdEl2.textContent = storesArr[i].cookiesPerHourArray[j];
-      trEl.appendChild(tdEl2);
+    for(var j =0; j< storesArr[i].cookiesPerHourArray.length; j++){
+      addElement('td', storesArr[i].cookiesPerHourArray[j], trEl);
       total += storesArr[i].cookiesPerHourArray[j];
     }
-    var tdTotal = document.createElement('td');
-    tdTotal.textContent = total;
-    trEl.appendChild(tdTotal);
-    pEl.appendChild(trEl);
+    addElement('tdTotal', total,trEl);
   }
 }
 
@@ -97,29 +88,23 @@ renderCookieData();
 
 function renderFooterTotal(){
   var trEl = document.createElement('tr');
-  var tdEl = document.createElement('td');
-  var runningTotal = 0;
+  addElement('td','Totals',trEl);
 
-  tdEl.textContent = 'Totals';
-  trEl.appendChild(tdEl);
+  var runningTotal = 0;
 
   pEl.appendChild(trEl);
 
   for(var i = 0; i < storeHours.length;i++){
     var total = 0;
-    var tdEl2 = document.createElement('td');
 
     for(var j = 0; j < storesArr.length; j++){
       total += storesArr[j].cookiesPerHourArray[i];
     }
 
-    tdEl2.textContent = total;
+    addElement('td',total,trEl);
     runningTotal += total;
-    trEl.appendChild(tdEl2);
   }
-  var tdRunningTotal = document.createElement('td');
-  tdRunningTotal.textContent = runningTotal;
-  trEl.appendChild(tdRunningTotal);
+  addElement('td', runningTotal, trEl);
 }
 
 renderFooterTotal();
@@ -135,22 +120,17 @@ function addNewStore(){
   var lastElement = storesArr.length - 1;
 
   var trEl = document.createElement('tr');
-  var tdEl = document.createElement('td');
-  tdEl.textContent = storesArr[lastElement].name;
-
-  trEl.appendChild(tdEl);
+  addElement('td', storesArr[lastElement].name,trEl);
   var total = 0;
 
   for(var i = 0; i < storesArr[lastElement].cookiesPerHourArray.length; i++){
-    var tdEl2 = document.createElement('td');
-    tdEl2.textContent = storesArr[lastElement].cookiesPerHourArray[i];
-    trEl.appendChild(tdEl2);
+
+    addElement('td', storesArr[lastElement].cookiesPerHourArray[i],trEl);
 
     total += storesArr[lastElement].cookiesPerHourArray[i];
   }
-  var tdTotal = document.createElement('td');
-  tdTotal.textContent = total;
-  trEl.appendChild(tdTotal);
+  addElement('td', total, trEl);
+
   pEl.appendChild(trEl);
 }
 
