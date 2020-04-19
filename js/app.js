@@ -112,16 +112,77 @@ function renderFooterTotal(){
     for(var j = 0; j < storesArr.length; j++){
       total += storesArr[j].cookiesPerHourArray[i];
     }
-    console.log(total);
 
     tdEl2.textContent = total;
     runningTotal += total;
     trEl.appendChild(tdEl2);
   }
   var tdRunningTotal = document.createElement('td');
-  console.log(runningTotal);
   tdRunningTotal.textContent = runningTotal;
   trEl.appendChild(tdRunningTotal);
 }
 
 renderFooterTotal();
+
+//ADDING FORM TO TABLE
+//
+//
+//
+
+var newStoreForm = document.getElementById('newStoreForm');
+
+function addNewStore(){
+  var lastElement = storesArr.length - 1;
+
+  var trEl = document.createElement('tr');
+  var tdEl = document.createElement('td');
+  tdEl.textContent = storesArr[lastElement].name;
+
+  trEl.appendChild(tdEl);
+  var total = 0;
+
+  for(var i = 0; i < storesArr[lastElement].cookiesPerHourArray.length; i++){
+    var tdEl2 = document.createElement('td');
+    tdEl2.textContent = storesArr[lastElement].cookiesPerHourArray[i];
+    trEl.appendChild(tdEl2);
+
+    total += storesArr[lastElement].cookiesPerHourArray[i];
+  }
+  var tdTotal = document.createElement('td');
+  tdTotal.textContent = total;
+  trEl.appendChild(tdTotal);
+  pEl.appendChild(trEl);
+}
+
+function handleSubmit(event){
+
+  event.preventDefault();
+
+  var name = event.target.name.value;
+
+  var minCustomersPerHour = Number(event.target.minCustomersPerHour.value);
+
+  var maxCustomersPerHour = Number(event.target.maxCustomersPerHour.value);
+
+  var avgCookiesPerCustomer = Number(event.target.avgCookiesPerCustomer.value);
+
+  new Store(name, minCustomersPerHour, maxCustomersPerHour, avgCookiesPerCustomer);
+
+  //remove totals row form table
+  //the parent element (id = table) is just an array with each table row being its own element in that array. I accessed the array by putting table.childNodes into the console log to find which one was the footer totals
+  pEl.removeChild(pEl.childNodes[7]);
+
+  //created a funtion that only add new store data
+  addNewStore();
+
+  //rerun the render footer function to readd all store hourly totals
+  renderFooterTotal();
+
+
+  event.target.name.value = null;
+  event.target.minCustomersPerHour.value = null;
+  event.target.maxCustomersPerHour.value = null;
+  event.target.avgCookiesPerCustomer.value = null;
+}
+
+newStoreForm.addEventListener('submit', handleSubmit);
