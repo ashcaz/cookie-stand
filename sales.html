@@ -38,16 +38,16 @@
           <legend> Add New Store to Databse</legend>
 
           <label>Enter New Store Name</label>
-          <input id="name" type="text" placeholder="Seattle">
+          <input id="name" type="text" placeholder="Seattle" required>
 
           <label>Enter Minimum Customers Per Hour</label>
-          <input id="minCustomersPerHour" type="text" placeholder="6">
+          <input id="minCustomersPerHour" type="number" placeholder="6" min="0" max="1000" required>
 
           <label>Enter Maximum Customers Per Hour</label>
-          <input id="maxCustomersPerHour" type="text" placeholder="72">
+          <input id="maxCustomersPerHour" type="number" placeholder="72" min="0" max="1000" required>
 
           <label>Enter Average Cookies Purchased Per Cusomter</label>
-          <input id="avgCookiesPerCustomer" type="text" placeholder="6.2">
+          <input id="avgCookiesPerCustomer" type="number" placeholder="6.2" min="1" max="100" required>
 
           <button value="submit">Add Store</button>
         
