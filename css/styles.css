@@ -20,7 +20,7 @@ a:active{
 nav{
   height: 450px;
   width: 100%;
-  background-image: url(./images/header-pic.jpg);
+  background-image: url(../images/header-pic.jpg);
   background-size: cover;
   display: inline-block;
 }
